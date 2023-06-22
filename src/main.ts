@@ -1,13 +1,14 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { MessagesModule } from './messages/messages.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(MessagesModule);
+  app.setGlobalPrefix('api');
   const config = new DocumentBuilder()
     .setTitle('Nestjs With TypeORM')
     .setDescription(
-      'this is my nestjs study project using TypeORM instead of Prisma',
+      'This is my nestjs study project using TypeORM instead of Prisma',
     )
     .setVersion('1.0')
     .build();
